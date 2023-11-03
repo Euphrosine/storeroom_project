@@ -1,0 +1,91 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h4 id="health_data">Overall Table</h4>
+    <table class="table table-bordered">
+        <thead style="background-color: rgb(248, 92, 92); color: black;">
+            <tr>
+                <th>Timestamp</th>
+                <th>Temperature</th>
+                <th>Humidity</th>
+                <th>CO2</th>
+                <th>LDR</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entry in crops_data %}
+                <tr>
+                    <td>{{ entry.timestamp }}</td>
+                    <td>{{ entry.temperature }}</td>
+                    <td>{{ entry.humidity }}</td>
+                    <td>{{ entry.co2 }}</td>
+                    <td>{{ entry.ldr }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table><br><br>
+    <h4 id="crops_chart">Overall Chart</h4>
+    <canvas id="weatherChart" width="600" height="300"></canvas>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var ctx = document.getElementById('weatherChart').getContext('2d');
+    
+            var data = {
+                labels: [{% for entry in crops_data %}'{{ entry.timestamp }}',{% endfor %}],
+                datasets: [
+                    {
+                        label: 'Temperature',
+                        data: [{% for entry in crops_data %}{{ entry.temperature }},{% endfor %}],
+                        borderColor: 'rgb(37,37,39)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'Humidity',
+                        data: [{% for entry in crops_data %}{{ entry.humidity }},{% endfor %}],
+                        borderColor: 'rgb(230,54,115)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'CO2',
+                        data: [{% for entry in crops_data %}{{ entry.co2 }},{% endfor %}],
+                        borderColor: 'rgb(167, 27, 177)',
+                        borderWidth: 1,
+                        fill: false
+                    },
+                    {
+                        label: 'LDR',
+                        data: [{% for entry in crops_data %}{{ entry.ldr }},{% endfor %}],
+                        borderColor: 'rgb(38,127,234)',
+                        borderWidth: 1,
+                        fill: false
+                    }
+                ]
+            };
+    
+            var options = {
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: {
+                            unit: 'day'
+                        }
+                    },
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            };
+    
+            var chart = new Chart(ctx, {
+                type: 'line',
+                data: data,
+                options: options
+            });
+        });
+    </script>
+    
+</div>
+{% endblock %}

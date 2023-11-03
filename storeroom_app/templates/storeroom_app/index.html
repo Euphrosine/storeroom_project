@@ -1,0 +1,123 @@
+{% extends 'partials/base.html' %}
+
+{% block content %}
+<br>
+<h3>Charts</h3>
+<div class="row mt-5">
+    <div class="col-md-6">
+        <h4>Temperature Chart</h4>
+        <canvas id="temperatureChart" width="400" height="250"></canvas>
+        <script>
+            const temperatureLabels = {{ temperature_labels| safe }};
+            const temperatureData = {{ temperature_values| safe }};
+
+            const temperatureConfig = {
+                type: 'line',
+                data: {
+                    labels: temperatureLabels,
+                    datasets: [{
+                        label: 'Temperature',
+                        data: temperatureData,
+                        fill: false,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                }
+            };
+
+            const temperatureChart = new Chart(
+                document.getElementById('temperatureChart').getContext('2d'),
+                temperatureConfig
+            );
+        </script>
+    </div>
+
+    <div class="col-md-6">
+        <h4>Humidity Chart</h4>
+        <canvas id="humidityChart" width="400" height="250"></canvas>
+        <script>
+            const humidityLabels = {{ humidity_labels| safe }};
+            const humidityData = {{ humidity_values| safe }};
+
+            const humidityConfig = {
+                type: 'line',
+                data: {
+                    labels: humidityLabels,
+                    datasets: [{
+                        label: 'Humidity',
+                        data: humidityData,
+                        fill: false,
+                        borderColor: 'rgb(255, 159, 64)',
+                        tension: 0.1
+                    }]
+                }
+            };
+
+            const humidityChart = new Chart(
+                document.getElementById('humidityChart').getContext('2d'),
+                humidityConfig
+            );
+        </script>
+    </div>
+</div>
+
+<div class="row mt-5">
+    <div class="col-md-6">
+        <h4>CO2 Chart</h4>
+        <canvas id="co2Chart" width="400" height="250"></canvas>
+        <script>
+            const co2Labels = {{ co2_labels| safe }};
+            const co2Data = {{ co2_values| safe }};
+
+            const co2Config = {
+                type: 'line',
+                data: {
+                    labels: co2Labels,
+                    datasets: [{
+                        label: 'CO2',
+                        data: co2Data,
+                        fill: false,
+                        borderColor: 'rgb(153, 102, 255)',
+                        tension: 0.1
+                    }]
+                }
+            };
+
+            const co2Chart = new Chart(
+                document.getElementById('co2Chart').getContext('2d'),
+                co2Config
+            );
+        </script>
+    </div>
+
+    <div class="col-md-6">
+        <h4>LDR Chart</h4>
+        <canvas id="ldrChart" width="400" height="250"></canvas>
+        <script>
+            const ldrLabels = {{ ldr_labels| safe }};
+            const ldrData = {{ ldr_values| safe }};
+
+            const ldrConfig = {
+                type: 'line',
+                data: {
+                    labels: ldrLabels,
+                    datasets: [{
+                        label: 'LDR',
+                        data: ldrData,
+                        fill: false,
+                        borderColor: 'rgb(255, 99, 132)',
+                        tension: 0.1
+                    }]
+                }
+            };
+
+            const ldrChart = new Chart(
+                document.getElementById('ldrChart').getContext('2d'),
+                ldrConfig
+            );
+        </script>
+    </div>
+</div>
+
+
+{% endblock %}
