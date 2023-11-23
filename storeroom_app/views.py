@@ -33,7 +33,7 @@ def api_data_view(request):
     return JsonResponse({"message": "Data saved successfully"})
 
 
-# @login_required
+@login_required
 def crop_data_view(request):
     # Get the data for each field
     temperature_data = CropsData.objects.values_list('timestamp', 'temperature')
@@ -81,6 +81,7 @@ def tables_view(request):
         'ldr_data': ldr_data,
     })
 
+@login_required
 def overall_view(request):
     crops_data = CropsData.objects.all()
     return render(request, 'storeroom_app/overall.html', {'crops_data': crops_data})

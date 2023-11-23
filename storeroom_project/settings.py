@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 import os
-import dj_database_url
+
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
+    'crispy_bootstrap4',
     'storeroom_app',
 ]
 
@@ -76,25 +78,16 @@ WSGI_APPLICATION = 'storeroom_project.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.mysql',
-#         'NAME': 'storeroomdb',      
-#         'USER': 'railway',     
-#         'PASSWORD': '6GGe-FdCagGDa11gF5HBGa21hg6g2adA', 
-#         'HOST': 'viaduct.proxy.rlwy.net',               
-#         'PORT': '21885',                   
-#     }
-# }
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
 DATABASES = {
-    'default': dj_database_url.config(default='mysql://root:6GGe-FdCagGDa11gF5HBGa21hg6g2adA@viaduct.proxy.rlwy.net:21885/railway')
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'storeroomproject',
+        'USER': 'admin',
+        'PASSWORD': 'admin123',
+        'HOST': 'mysql-153418-0.cloudclusters.net',
+        'PORT': '19069',
+
+    }
 }
 
 # Password validation
@@ -139,3 +132,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+LOGIN_REDIRECT_URL = 'overall_page'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+LOGIN_URL = 'login'
