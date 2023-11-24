@@ -11,6 +11,7 @@
                 <th>Humidity</th>
                 <th>CO2</th>
                 <th>LDR</th>
+                <th>Results</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,14 @@
                     <td>{{ entry.humidity }}</td>
                     <td>{{ entry.co2 }}</td>
                     <td>{{ entry.ldr }}</td>
+                    <td>
+                        {% if entry.temperature >= 3 and entry.temperature <= 4 and entry.humidity == 90 and entry.ldr == 0 %}
+                            Favorable
+                        {% else %}
+                            Unfavorable
+                        {% endif %}
+                    </td>
+    
                 </tr>
             {% endfor %}
         </tbody>
