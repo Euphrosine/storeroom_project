@@ -23,7 +23,7 @@
                     <td>{{ entry.co2 }}</td>
                     <td>{{ entry.ldr }}</td>
                     <td>
-                    {% if entry.temperature >= 15 and entry.temperature <= 17 and entry.humidity >= 90 and entry.humidity <= 97 and entry.ldr >= 800 and entry.ldr <= 800 and entry.co2 >= 1 %}
+                    {% if entry.temperature >= 15 and entry.temperature <= 17 and entry.humidity >= 90 and entry.humidity <= 97 and entry.ldr >= 800 and entry.ldr <= 1000 and entry.co2 >= 1 %}
                         Favorable
                     {% else %}
                         Unfavorable
