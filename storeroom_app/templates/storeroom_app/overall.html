@@ -3,39 +3,42 @@
 {% block content %}
 <div class="container mt-5">
     <h4 id="health_data">Overall Table</h4>
-    <table class="table table-bordered">
-        <thead style="background-color: rgb(248, 92, 92); color: black;">
-            <tr>
-                <th>Timestamp</th>
-                <th>Temperature</th>
-                <th>Humidity</th>
-                <th>CO2</th>
-                <th>LDR</th>
-                <th>Results</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entry in crops_data %}
+    <div class="table-responsive" style="max-height: 520px;overflow-y: auto;">
+        <table class="table table-bordered">
+            <thead style="background-color: rgb(248, 92, 92); color: black;">
                 <tr>
-                    <td>{{ entry.timestamp }}</td>
-                    <td>{{ entry.temperature }}</td>
-                    <td>{{ entry.humidity }}</td>
-                    <td>{{ entry.co2 }}</td>
-                    <td>{{ entry.ldr }}</td>
-                    <td>
-                    {% if entry.temperature >= 15 and 17 >= entry.temperature and entry.humidity >= 90 and 97 >= entry.humidity and entry.ldr >= 800 and 1000 >= entry.ldr and 1 >= entry.co2 %}
-                        Favorable
-                    {% else %}
-                        Unfavorable
-                    {% endif %}
-                    
-                    
-                    </td>
-    
+                    <th>Timestamp</th>
+                    <th>Temperature</th>
+                    <th>Humidity</th>
+                    <th>CO2</th>
+                    <th>LDR</th>
+                    <th>Results</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table><br><br>
+            </thead>
+            <tbody>
+                {% for entry in crops_data %}
+                    <tr>
+                        <td>{{ entry.timestamp }}</td>
+                        <td>{{ entry.temperature }}</td>
+                        <td>{{ entry.humidity }}</td>
+                        <td>{{ entry.co2 }}</td>
+                        <td>{{ entry.ldr }}</td>
+                        <td>
+                        {% if entry.temperature >= 17 and 20 >= entry.temperature and entry.humidity >= 90 and 97 >= entry.humidity and entry.ldr >= 800 and 1000 >= entry.ldr and 1 >= entry.co2 %}
+                            Favorable
+                        {% else %}
+                            Unfavorable
+                        {% endif %}
+                        
+                        
+                        </td>
+        
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+<br><br>
     <h4 id="crops_chart">Overall Chart</h4>
     <canvas id="weatherChart" width="600" height="300"></canvas>
     <script>
